@@ -1,4 +1,4 @@
-package linear
+package golangML
 
 import (
 	"errors"
