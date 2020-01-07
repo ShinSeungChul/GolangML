@@ -7,6 +7,11 @@ import "errors"
 func Perceptron(x ...[]float64) (error, []float64, float64) {
 	len_x := len(x)
 	num_x := len(x[0])
+	for i := 1; i < len_x; i++ {
+		if len(x[i]) != num_x {
+			return errors.New("Different lengths between X, Y"), nil, 0
+		}
+	}
 	learning_rate := 0.05
 	bias := 1.
 	bias_w := 0.3
