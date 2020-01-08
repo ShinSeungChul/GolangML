@@ -4,12 +4,14 @@ import "errors"
 
 //single-layer perceptron
 //return error, w []float64, bias float64
-func Perceptron(x ...[]float64) (error, []float64, float64) {
+func Perceptron(filename string) ([]float64, float64, error) {
+	var x [][]float64
+	x = ReadCsv(filename)
 	len_x := len(x)
 	num_x := len(x[0])
 	for i := 1; i < len_x; i++ {
 		if len(x[i]) != num_x {
-			return errors.New("Different lengths between X, Y"), nil, 0
+			return nil, 0, errors.New("Different lengths between X, Y")
 		}
 	}
 	learning_rate := 0.05
@@ -50,10 +52,10 @@ func Perceptron(x ...[]float64) (error, []float64, float64) {
 			}
 		}
 		if !flag {
-			return nil, w, bias * bias_w
+			return w, bias * bias_w, nil
 		}
 		if t > 5000 {
-			return errors.New("Can't find w"), nil, 0
+			return nil, 0, errors.New("Can't find w")
 		}
 	}
 }
