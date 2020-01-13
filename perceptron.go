@@ -1,6 +1,8 @@
 package golangML
 
-import "errors"
+import (
+	"errors"
+)
 
 //single-layer perceptron
 //return error, w []float64, bias float64
